@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" type="text/css" href="./../stylesheets/main.css">
+		<link rel="stylesheet" type="text/css" href="./../stylesheets/partials.css">
+		<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script type='text/javascript' src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js'/></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js'/></script>
+		<script src='./../javascripts/app.js'/></script>
+		<script src='./../javascripts/controllers.js'/></script>
+		<script src='./../javascripts/factories.js'/></script>
+		<script type="text/javascript">
+			var socket = io.connect();
+			socket.on('info', function(msg){
+			 console.log('received info event and got the following message', msg);
+			});
+			socket.emit('test', { hello: 'world' });
+		</script>
+  	</head>
+  	<body id='body' ng-app='MusicApp'>
+		<div id='container' ng-controller="User" class='row'>
+				
+			<div id='header' class='row'>
+				<div id='logo' class='col-sm-3'>
+					<img src="./../images/logo.png" alt="logo">
+					<h1>SoundHub</h1>
+				</div>
+				<div id='search' class='col-sm-5'>
+					<input ng-model='filter_name' type="search" class="form-control" placeholder="Search">
+				</div>
+				<div id='user' class='col-sm-3 col-sm-offset-1'>
+					<a href='#/' ng-bind="user[0].first_name"></a>
+					<span class="user_icon glyphicon glyphicon-cloud"></span>
+					<div id='log_out' class='pull-right'>
+						<a href='/'>Log Out</a>
+						<span class="logout_icon glyphicon glyphicon-off"></span>
+					</div>
+				</div>
+			</div>
+
+			<div id='nav_bar' class='col-sm-2'>
+				<nav class="navbar navbar-inverse nav-stacked navbar-left col-sm-12" role="navigation">
+					<h5>Main<span class="icon glyphicon glyphicon-headphones"></span></h5>
+				  	<ul class="nav navbar nav-stacked">
+					  	<li>
+					  		<a href="#/browse">Browse Music</a>
+					  	</li>
+						</ul>
+					<h5>Your Playlists<span class="icon glyphicon glyphicon-th-list"></span></h5>
+					<div id='playlist'>
+						<ul class="nav navbar nav-stacked" ng-repeat="playlist in playlists">
+							<li>
+								<a href='#/playlist' ng-bind='playlist.playlist_name' ng-click="showPlaylist($index)"></a>
+							</li>
+						</ul>
+					</div>
+					<div id='create' class="input-group input-group-sm">
+					  	<input type="text" class="form-control" placeholder="Playlist name" ng-model='playlist_name'>
+					  	<button ng-click='createPlaylist()' class='btn btn-xs btn-primary'>Add playlist</button>
+					</div>
+					
+				</nav>
+			</div>
+
+			<div id='main_content' class='col-sm-8' ng-view=''>
+			</div>
+
+			<div class='row'>
+				<div class='col-sm-2'>
+					<h3>What's happening</h3>
+						<div id='news_feed'>
+							<p>You are listening to {{song_source}}</p> 
+						</div>
+				</div>
+			</div>				
+			
+			<div class='footer navbar-fixed-bottom'>
+			   <audio id="audio-tag" controls="controls" preload="none">
+				  <source ng-src="" type="audio/mpeg"/>
+				Your browser does not support the audio element.
+				</audio>
+			</div>
+
+		</div>
+  	</body>
+</html>

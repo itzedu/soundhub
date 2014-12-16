@@ -1,0 +1,59 @@
+/*USER PARTIAL*/
+.playlist_div{
+	overflow: auto;
+	height: 600px;
+}
+.playlist_title {
+	margin-left: 50px;
+}
+
+/*BROWSE PARTIAL*/
+.playlist_select {
+	display: inline;
+	margin-right: 20px;
+}
+.playlist_select select{
+	background: transparent;
+	width: 150px;
+	padding: 5px;
+	font-size: 1.1em;
+	line-height: 1;
+	border: 0;
+	height: 34;
+}
+.play_icon{
+	margin-right: -10px;
+}
+.play_icon2{
+	margin-right: -30px;
+}
+.add_icon{
+	font-size: 1.3em;
+	color: #1E90FF;
+}
+
+/*PLAYLIST PARTIAL*/
+.trash_icon{
+	font-size: 1.3em;
+	color: white;
+}
+
+/*FOLLOW PARTIAL*/
+.view_page{
+	color: white;
+	margin-right: 10px;
+}
+.this_playlist{
+	margin-left: 50px;
+}
+#current_playlist{
+	margin-top: 40px;
+}
+#current_playlist h3{
+	display: inline;
+	margin-left: 50px;
+}
+.delete_playlist{
+	display:inline-block;
+	margin-right: 105px;
+}

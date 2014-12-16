@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" type="text/css" href="./../stylesheets/login.css">
+		<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script type='text/javascript' src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js'/></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js'/></script>
+		<script src='./../javascripts/app.js'/></script>
+		<script src='./../javascripts/controllers.js'/></script>
+		<script src='./../javascripts/factories.js'/></script>
+		<script type="text/javascript">
+			var socket = io.connect();
+			socket.on('info', function(msg){
+			 console.log('received info event and got the following message', msg);
+			});
+			socket.emit('test', { hello: 'world' });
+		</script>
+  	</head>
+  	<body id='body'>
+  		<div class='row'>
+			<div class="jumbotron col-sm-8 col-sm-offset-2">
+			  	<h1>Welcome to SoundHub</h1>
+			  	<p>SoundHub is a free to use application where anyone can make a playlist of their favorite sounds!</p>
+			</div>
+		</div>
+		<div id='container' ng-app="MusicApp" class='row'>
+			<div ng-controller='Login'>
+				<div id='sign_up' class='col-sm-4 col-sm-offset-2'> 
+					<h3>Sign Up</h3>
+						<form role="form">
+						<div class="form-group">
+							<label>First Name</label>
+							<input type="text" ng-model="register.first_name" class="form-control" placeholder="Enter first name">
+			  			</div>
+			  	
+			  			<div class="form-group">
+							<label>Last Name</label>
+							<input type="text" ng-model="register.last_name" class="form-control" placeholder="Enter last name">
+			  			</div>
+			  	
+			  			<div class="form-group">
+							<label>Email address</label>
+							<input type="email" ng-model="register.email" class="form-control" placeholder="Enter email">
+			  			</div>
+			 	
+			 			<div class="form-group">
+							<label>Password</label>
+							<input type="password" ng-model="register.password" class="form-control" placeholder="Password">
+			  			</div>
+		  				<button type="submit" ng-click="registerUser()" class="btn btn-primary">Sign Up</button>
+					</form>
+				</div>
+
+				<div id='login' class='col-sm-4'>
+					<h3>Login</h3>
+					<form role="form">
+					  	<div class="form-group">
+							<label>Email address</label>
+							<input type="email" ng-model="login.email" class="form-control" placeholder="Enter email">
+					  	</div>
+
+					 	<div class="form-group">
+							<label>Password</label>
+							<input type="password" ng-model="login.password" class="form-control" placeholder="Password">
+					  	</div>
+				  		<button type="submit" ng-click="loginUser()" class="btn btn-primary">Log In</button>
+					</form>
+					<div ng-repeat="message in messages">
+						<p ng-bind='message.email.message'></p>
+						<p ng-bind='message.password.message'></p>
+						<p ng-bind='message.first_name.message'></p>
+						<p ng-bind='message.last_name.message'></p>
+					</div>
+						<p ng-bind='success'></p>
+				</div>
+			</div>
+		</div>
+  	</body>
+</html>

@@ -1,0 +1,84 @@
+*{
+	padding: 0;
+	margin: auto;
+}
+#body{
+	background-color: #424242;
+}
+#container{
+	color: white;
+}
+#header{
+	padding: 20px;
+}
+#search input{
+	margin-top: 15px;
+}
+#logo img{
+	padding-left: 20px;
+	padding-bottom: 20px
+}
+#logo h1{
+	display: inline;
+	margin-left:10px;
+}
+#user{
+	margin-top: 15px;
+}
+	#user a{
+		font-size: 2em;
+		color: white;
+	}
+#log_out{
+	margin-right: 10px;
+	margin-top: 10px;
+	display: inline-block;
+}
+#log_out a{
+	font-size: 1.3em;
+}
+#log_out span{
+	font-size: 1.2em;
+}
+.user_icon{
+	font-size: 1.8em;
+}
+#playlist{
+	height: 200px;
+	overflow: auto;
+}
+#playlist ul{
+	margin-bottom: 0;
+}
+.icon{
+	margin-left: 10px;
+}
+.follow_icon{
+	font-size: 1.3em;
+	color: white;
+}
+/*#header{
+	width: auto;
+}*/
+#create{
+	margin-top: 40px;
+	margin-bottom: 10px;
+}
+	#create input{
+		margin-bottom: 10px;
+	}
+#follow_list{
+	height: 200px;
+	overflow: auto;
+	margin-bottom: 20px;
+}
+.follow_name li label{
+	width: 100px;
+}
+.follow_name li {
+	list-style: none;
+}
+#news_feed{
+	height: 200px;
+	overflow: auto;
+}

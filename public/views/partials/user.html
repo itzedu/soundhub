@@ -1,0 +1,29 @@
+<h2>Your music</h2>
+<div class='playlist_div'>
+	<div class='row' ng-repeat='playlist in playlists'>
+		<h3 class="this_playlist" ng-bind='playlist.playlist_name'></h3>
+		<div class="col-sm-10 col-sm-offset-1">
+			<div class='row'>
+				<table class="table">
+				  	<thead>
+					  	<tr>
+					  		<th class="col-sm-1"></th>
+					  		<th class="col-sm-3">Track</th>
+					  		<th class="col-sm-3">Artist</th>
+					  		<th class="col-sm-2">Date Added</th>
+					  	</tr>
+				  	</thead>
+				  	<tbody>
+						<tr ng-repeat='song in playlist.songs | filter: filter_name'>
+							<td><a href='' ng-click='playSong(song.file_source)'><span class="play_icon2 glyphicon glyphicon-play"></span></a></td>
+							<td><p ng-bind='song.track'></p></td>
+							<td ng-bind='song.artist'></td>
+							<td ng-bind="song.date | date: 'MMMM d, y'"></td>
+						</tr>
+				  	</tbody>
+				</table>
+			</div>
+			<a href='#/playlist' ng-click="showPlaylist($index)">Show More</a>
+		</div>
+	</div>
+</div>
